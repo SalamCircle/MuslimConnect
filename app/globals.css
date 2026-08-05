@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 2%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 158 64% 40%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 11%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 185 84% 44%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 68% 54%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 13%;
+    --input: 0 0% 11%;
+    --ring: 158 64% 40%;
+    --radius: 0.75rem;
+    --chart-1: 158 64% 40%;
+    --chart-2: 185 84% 44%;
+    --chart-3: 43 74% 66%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 27 87% 67%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; color-scheme: dark; }
+  body { @apply bg-[#050505] text-white antialiased; }
+}
+
+@layer utilities {
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .glass-card {
+    background: rgba(255,255,255,0.035);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 1rem;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .glass-card:hover { background: rgba(255,255,255,0.055); border-color: rgba(255,255,255,0.1); }
+  .glass-input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    transition: border-color 0.2s;
+  }
+  .glass-input:focus { border-color: rgba(52,211,153,0.5); box-shadow: 0 0 0 3px rgba(52,211,153,0.1); }
+
+  /* Gradients */
+  .text-gradient {
+    background: linear-gradient(135deg, #34d399 0%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .bg-gradient-brand { background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); }
+
+  /* Glows */
+  .glow-sm { box-shadow: 0 0 20px rgba(16,185,129,0.25); }
+  .glow-md { box-shadow: 0 0 32px rgba(16,185,129,0.35), 0 0 60px rgba(16,185,129,0.1); }
+
+  /* Scrollbar */
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+  /* Grid dots bg */
+  .dot-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+}
+
+@layer components {
+  /* Buttons */
+  .btn-brand {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200;
+    background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  }
+  .btn-brand:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(16,185,129,0.3); }
+  .btn-brand:disabled { opacity: 0.45; transform: none; cursor: not-allowed; }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white/75 transition-all duration-200;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.09); color: white; border-color: rgba(255,255,255,0.14); }
+
+  /* Form inputs */
+  .field-input {
+    @apply w-full rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition-all duration-200 glass-input;
+  }
+  select.field-input {
+    background-color: #0d0d0d;
+    color: white;
+    color-scheme: dark;
+  }
+  select.field-input option {
+    background-color: #111111;
+    color: white;
+  }
+  input[type="date"].field-input,
+  input[type="datetime-local"].field-input {
+    color-scheme: dark;
+  }
+
+  /* Nav links */
+  .nav-item {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-150 cursor-pointer;
+    color: rgba(255,255,255,0.55);
+  }
+  .nav-item:hover { @apply text-white; background: rgba(255,255,255,0.06); }
+  .nav-item.active { @apply text-white; background: rgba(16,185,129,0.14); border: 1px solid rgba(16,185,129,0.2); }
+
+  /* Badges */
+  .badge { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium; }
+  .badge-emerald { @apply badge text-emerald-400; background: rgba(16,185,129,0.12); }
+  .badge-cyan { @apply badge text-cyan-400; background: rgba(6,182,212,0.12); }
+  .badge-amber { @apply badge text-amber-400; background: rgba(245,158,11,0.12); }
+  .badge-rose { @apply badge text-rose-400; background: rgba(244,63,94,0.12); }
+  .badge-violet { @apply badge text-violet-400; background: rgba(139,92,246,0.12); }
+  .badge-blue { @apply badge text-blue-400; background: rgba(59,130,246,0.12); }
+}
